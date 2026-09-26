@@ -1,0 +1,7 @@
+Day	Target
+Day 1	Forgot-password OTP
+Day 2	Verify forgot-password OTP
+Day 3	Reset password
+Day 4	Full auth regression testing + fixes
+Day 5	Frontend auth setup
+Weekend	Register/Login/OTP UI + API integration

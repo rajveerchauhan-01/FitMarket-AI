@@ -132,3 +132,5 @@ The password is hashed only once.
 Improves security without adding extra complexity.
 
 Login OTP should be associated with the authenticated user's userId and purpose: "login". The user's email/phone is used to locate the account, while userId identifies the account whose OTP is being verified.
+
+The reset-token middleware authenticates the password-reset request and attaches the user to req.user. The reset-password service only handles password hashing and updating the user, keeping authentication and business logic separate.

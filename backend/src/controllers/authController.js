@@ -2,6 +2,9 @@ import register from "../services/authService.js";
 import loginService from "../services/loginService.js";
 import verifyOtp from "../services/verifyOtpService.js";
 import verifyLoginOtp from "../services/verifyLoginOtpService.js"
+import forgotPwService from "../services/forgotPasswordService.js";
+
+import verifyForgotPasswordService from "../services/verifyForgotPasswordOtpService.js";
 const registerUser = async (req, res) => {
     try {
         const result = await register(req.body);
@@ -62,5 +65,50 @@ const getCurrentUser = async (req, res) => {
         });
     }
 };
+const forgotPasswordUser = async (req, res) => {
+    try {
+        const result = await forgotPwService(req.body)
+        return res.status(200).json(result)
+    } catch (error) {
+        return res.status(error.status || 500).json({
+            success: false,
+            message: error.message || "Internal Server Error"
+        });
+    }
+}
 
-export { registerUser, verifyOtpUser, loginUser, verifyLoginOtpUser, getCurrentUser };
+const verifyForgotPasswordOtpUser = async (req, res) => {
+    try {
+        const result = await verifyForgotPasswordService(req.body);
+
+        return res.status(200).json(result);
+    } catch (error) {
+        return res.status(error.status || 500).json({
+            success: false,
+            message: error.message || "Internal Server Error"
+        });
+    }
+};
+
+import resetPasswordService from "../services/resetPasswordService.js";
+
+const resetPasswordUser = async (req, res) => {
+    try {
+        const result = await resetPasswordService(
+            req.user,
+            req.body.newPassword
+        );
+
+        return res.status(200).json(result);
+
+    } catch (error) {
+        return res.status(error.status || 500).json({
+            success: false,
+            message: error.message || "Internal Server Error"
+        });
+    }
+};
+
+
+
+export { registerUser, verifyOtpUser, loginUser, verifyLoginOtpUser, getCurrentUser, forgotPasswordUser, verifyForgotPasswordOtpUser, resetPasswordUser };

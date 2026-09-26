@@ -62,8 +62,7 @@ const verifyLoginOtp = async (data) => {
 
             throw {
                 status: 400,
-                message:
-                    "Too many failed attempts. Please login again to request a new OTP."
+                
             };
         }
 
