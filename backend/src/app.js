@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 import authRoutes from "./routes/authRoutes.js";
-
+import profileRoutes from "./routes/Profile/profileRoutes.js"
 const app = express();
 
 // Middlewares
@@ -11,6 +11,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/profile", profileRoutes);
 
 // Test Route
 app.get("/", (req, res) => {
